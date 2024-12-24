@@ -122,9 +122,10 @@ class AdminController extends Controller
     }
 
     public function view_orders() {
-        $data=Order::all();
-        return view('admin.order',compact('data'));
+        $data = Order::with('product')->get(); // Lấy tất cả các đơn hàng cùng với thông tin sản phẩm
+        return view('admin.order', compact('data'));
     }
+
 
     public function on_the_way($id){
         $data=Order::find($id);
@@ -146,4 +147,66 @@ class AdminController extends Controller
         $data->save();
         return redirect('/view_orders');
     }
+    
+    public function canceled($id)
+    {
+        // Lấy thông tin đơn hàng
+        $order = Order::find($id);
+    
+        // Kiểm tra nếu đơn hàng không tồn tại
+        if (!$order) {
+            return redirect()->back()->with('error', 'Order not found.');
+        }
+    
+        // Cập nhật trạng thái đơn hàng thành 'Canceled'
+        $order->status = 'Canceled';
+    
+        // Tăng số lượng sản phẩm trong kho nếu có sản phẩm liên quan
+        if ($order->product) {
+            $order->product->quantity += $order->quantity; // Số lượng trong đơn hàng được cộng lại vào kho
+            $order->product->save();
+        }
+    
+        // Lưu lại đơn hàng
+        $order->save();
+    
+        // Điều hướng về trang admin quản lý đơn hàng với thông báo
+        return redirect()->back()->with('message', 'Order has been canceled successfully, and product stock has been updated.');
+    }
+    
+
+    public function returned($id)
+    {
+        // Lấy thông tin đơn hàng
+        $order = Order::find($id);
+    
+        // Cập nhật trạng thái đơn hàng thành 'Canceled'
+        $order->status = 'Returned';
+    
+        // Tăng số lượng sản phẩm trong kho nếu có sản phẩm liên quan
+        if ($order->product) {
+            $order->product->quantity += $order->quantity; // Số lượng trong đơn hàng được cộng lại vào kho
+            $order->product->save();
+        }
+    
+        // Lưu lại đơn hàng
+        $order->save();
+    
+        // Điều hướng về trang admin quản lý đơn hàng với thông báo
+        return redirect()->back()->with('message', 'Returned successfully, and product stock has been updated.');
+    }
+
+    public function filterProducts($category)
+    {
+        if ($category === 'all') {
+            $product = Product::all();
+        } else {
+            $product = Product::where('category', $category)->get();
+        }
+
+        return view('admin.view_product', compact('product'));
+    }
+
+    
+
 }

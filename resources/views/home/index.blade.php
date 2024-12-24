@@ -12,6 +12,8 @@
   </div>
     @include('home.product')
 
+    @include('home.whychooseus')
+
     <section class="contact_section ">
     <div class="container px-0">
       <div class="heading_container ">

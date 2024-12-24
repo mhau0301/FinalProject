@@ -4,6 +4,7 @@ body {
   font-family: "poppins", sans-serif;
   color: #101010;
   background-color: #ffffff;
+  padding-top: 80px; /* Bằng với chiều cao của header (80px) */
 }
 
 .layout_padding {
@@ -59,6 +60,24 @@ body {
 }
 
 /*header section*/
+
+.header_section {
+  height: 80px; /* Chiều cao mong muốn */
+  display: flex; /* Sử dụng Flexbox */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  justify-content: center; /* Hoặc 'center' để căn giữa theo chiều ngang */
+  padding: 0 20px; /* Thêm khoảng cách hai bên */
+
+  position: fixed; /* Cố định vị trí của header */
+  top: 0; /* Đặt header ở trên cùng */
+  left: 0; /* Canh lề trái */
+  width: 100%; /* Chiếm toàn bộ chiều rộng trang */
+  z-index: 1000; /* Đặt thứ tự lớp cao để tránh bị che bởi các phần tử khác */
+
+  background-color: #C9E6F0;
+}
+
+
 .hero_area {
   padding: 0 45px;
 }
@@ -68,20 +87,20 @@ body {
 }
 
 #navbarSupportedContent {
-  width: 100%;
-  background-color: skyblue;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding: 10px 0;
-  border-radius: 15px 15px 0 0;
+  background-color: transparent; /* Xóa màu nền */
+  border-radius: 0; /* Loại bỏ bo tròn góc */
+  box-shadow: none; /* Xóa hiệu ứng đổ bóng */
+  padding: 0; /* Xóa khoảng cách thừa */
 }
 
 #navbarSupportedContent.innerpage_navbar {
-  background-color: white;
-  border-radius: 10px;
-  -webkit-box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
-          box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
+  background-color: transparent; /* Xóa màu nền */
+  box-shadow: none; /* Xóa bóng */
+  border-radius: 0; /* Loại bỏ bo góc */
+}
+
+.custom_nav-container {
+  box-shadow: none; /* Xóa bóng */
 }
 
 #navbarSupportedContent.innerpage_navbar .nav-item.active .nav-link {
@@ -233,9 +252,8 @@ a:focus {
 
 /*end header section*/
 .slider_section .slider_container {
-  color: #fefefe;
-  background-color: #000000;
-  background-color: black;
+  color: #31473a;
+  background-color: #edf4f2;
   padding: 25px;
   border-radius: 0 0 15px 15px;
 }
@@ -325,7 +343,7 @@ a:focus {
 }
 
 .shop_section .box {
-  background-color: #eeeeee;
+  background-color: #edf4f2;
   position: relative;
   padding: 10px;
   margin-top: 25px;
@@ -849,6 +867,70 @@ a:focus {
 
 .footer_section a {
   color: #cbc9c9;
+}
+
+.features-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 50px auto;
+  gap: 30px;
+  padding: 20px;
+}
+
+.feature {
+  background: #edf4f2;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  max-width: 320px;
+  min-height: 380px; /* Đặt chiều cao tối thiểu cố định */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.feature img {
+  display: block; /* Đảm bảo thẻ img là block */
+  margin: 0 auto; /* Căn giữa theo chiều ngang */
+  max-width: 80px; /* Đặt kích thước tối đa cho icon */
+  height: auto; /* Giữ tỷ lệ hình ảnh */
+}
+
+.feature:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.feature img {
+  max-width: 100px;
+  margin-bottom: 15px;
+}
+
+.feature h3 {
+  font-size: 1.2em;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+
+.feature p {
+  font-size: 0.95em;
+  color: #555;
+  text-align: justify;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .features-section {
+    flex-direction: column;
+    gap: 20px;
+  }
 }
 
 /* end footer section*/

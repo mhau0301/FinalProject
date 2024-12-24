@@ -65,7 +65,7 @@ route::get('mycart',[HomeController::class,'mycart'])->middleware(['auth', 'veri
 
 Route::get('remove_cart/{id}', [HomeController::class, 'remove_cart'])->middleware(['auth', 'verified']);
 
-Route::post('confirm_order', [HomeController::class, 'confirm_order'])->middleware(['auth', 'verified']);
+Route::post('/confirm_order', [HomeController::class, 'confirm_order'])->middleware(['auth', 'verified']);
 
 Route::get('view_orders', [AdminController::class, 'view_orders'])->middleware(['auth', 'admin']);
 
@@ -74,4 +74,25 @@ Route::get('on_the_way/{id}', [AdminController::class, 'on_the_way'])->middlewar
 Route::get('delivered/{id}', [AdminController::class, 'delivered'])->middleware(['auth', 'admin']);
 
 Route::get('in_progress/{id}', [AdminController::class, 'in_progress'])->middleware(['auth', 'admin']);
+
+Route::get('canceled/{id}', [AdminController::class, 'canceled'])->middleware(['auth', 'admin']);
+
+Route::get('returned/{id}', [AdminController::class, 'returned'])->middleware(['auth', 'admin']);
+
+Route::get('/my-orders', [HomeController::class, 'myOrders'])->name('myOrders');
+
+Route::post('/canceled/{order}', [HomeController::class, 'cancelOrder'])->name('orders.cancel');
+
+Route::post('/returned/{order}', [HomeController::class, 'returned'])->name('orders.return');
+
+Route::post('/orders/{id}/mark-as-delivered', [HomeController::class, 'markAsDelivered'])->name('orders.markAsDelivered');
+
+Route::post('/orders/{id}/on-the-way', [HomeController::class, 'onTheWay'])->name('orders.onTheWay');
+
+Route::post('/contact/send', [HomeController::class, 'send'])->name('contact.send');
+
+Route::get('/products/{category}', [AdminController::class, 'filterProducts'])->name('filter.products');
+
+Route::get('search', [HomeController::class, 'search'])->name('search');
+
 

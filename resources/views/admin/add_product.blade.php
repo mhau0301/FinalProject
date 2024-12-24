@@ -123,7 +123,7 @@
                 <!-- Discount Price -->
                 <div class="form-group">
                     <label for="discount_price">Discount Price</label>
-                    <input type="number" id="discount_price" name="discount_price" min="0" required="" >
+                    <input type="number" id="discount_price" name="discount_price" min="0"  >
                 </div>
 
                 <!-- Product Quantity -->

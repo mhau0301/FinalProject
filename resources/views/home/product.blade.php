@@ -37,16 +37,7 @@
               <div style="padding: 10px; text-align: center;" >
                   <a class="btn btn-danger" href="{{url('product_details', $product->id)}}">Details</a>
               </div>
-              <div style="text-align: center;">
-                  <!-- Biểu mẫu thêm vào giỏ hàng -->
-                  <form action="{{url('add_cart', $product->id)}}" method="POST" style="display: inline;">
-                      @csrf
-                      <!-- Input số lượng -->
-                      <input type="number" name="quantity" value="1" min="1" style="width: 60px; margin-right: 10px;">
-                      <!-- Nút thêm vào giỏ hàng -->
-                      <button type="submit" class="btn btn-primary">Add to Cart</button>
-                  </form>
-              </div>
+              
 
             </div>
         </div>

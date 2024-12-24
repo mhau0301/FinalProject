@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    @include('home.css')
-</head>
-
-<body>
-  <div class="hero_area">
-        @include('home.header')
-  </div>
-  <section class="client_section layout_padding">
+<section class="client_section layout_padding">
     <div class="container">
       <div class="heading_container heading_center">
         <h2>
@@ -67,8 +56,3 @@
       </div>
     </section>
   </section>
-    
-  @include('home.footer')
-</body>
-
-</html>
